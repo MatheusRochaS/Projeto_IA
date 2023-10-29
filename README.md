@@ -11,12 +11,12 @@ py -m venv env
 ```
 Windows PowerShell
 ```sh
-env\Scripts\Activate.ps1
+venv\Scripts\Activate.ps1
 ```
 
 Windows cmd.exe
 ```sh
-env\Scripts\activate.bat
+venv\Scripts\activate.bat
 ```
 
 Run Project
