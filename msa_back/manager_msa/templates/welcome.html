@@ -2,3 +2,16 @@
 {% load static %}
 
 {% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="mt-5 text-white">
+            <h1>Bem Vindo *Nome do Website*</h1>
+            <h2>Muitos filmes, séries, animes e muito mais para acompanhar</h2>
+        </div>
+        <div class="text-white text-center mt-5">
+            <span>Clique no botão para conhecer mais!</span><br>
+            <a href="{% url 'login' %}" class="btn btn-info mt-2">Entrar</a>
+        </div>
+    </div>
+{% endblock %}
