@@ -7,7 +7,7 @@ Creation of Virtual Environments
 pip install virtualenv
 ```
 ```sh
-py -m venv env
+py -m venv venv
 ```
 Windows PowerShell
 ```sh
