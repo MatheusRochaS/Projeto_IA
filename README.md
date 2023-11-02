@@ -14,6 +14,11 @@ Windows PowerShell
 venv\Scripts\Activate.ps1
 ```
 
+Linux PowerShell
+```sh
+source venv/bin/activate
+```
+
 Windows cmd.exe
 ```sh
 venv\Scripts\activate.bat
