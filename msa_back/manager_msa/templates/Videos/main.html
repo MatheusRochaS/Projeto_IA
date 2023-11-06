@@ -7,13 +7,13 @@
 
 <!-- Slider main container -->
 <div>
-    <div class="swiper mt-5">
+    <div class="swiper mb-3" style="margin-top: 2rem;">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide text-white"><img src="{% static 'img/gen-v.jpg' %}" alt=""></div>
-            <div class="swiper-slide text-white"><img src="{% static 'img/gen-v.jpg' %}" alt=""></div>
-            <div class="swiper-slide text-white"><img src="{% static 'img/gen-v.jpg' %}" alt=""></div>
+            <div class="swiper-slide text-white"><img src="{% static 'img/gen-v.jpg' %}" alt="" class="img"></div>
+            <div class="swiper-slide text-white"><img src="{% static 'img/gen-v.jpg' %}" alt="" class="img"></div>
+            <div class="swiper-slide text-white"><img src="{% static 'img/gen-v.jpg' %}" alt="" class="img"></div>
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
@@ -26,9 +26,66 @@
         <div class="swiper-scrollbar"></div> -->
     </div>
 
-    <div class="container mt-3">
+    <div class="container mb-3">
         <h2 class="text-white mb-3">Recomendações para você</h2>
-        <div class="row d-flex gap-5">
+        <div class="row gap-5 mb-3">
+            <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 18.438rem;">
+                <div class="card-body" style="padding: 0.5rem !important;">
+                    <div class="d-flex justify-content-center mb-2">
+                        <img class="text-center" src="{% static 'img/solo-leveling.jpg' %}" alt="" style="width: 10rem; height: 12.5rem;" data-swiper-parallax="-300">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-black">Solo Leveling</h6>
+                            <p class="card-text">00/00/0000</p>
+                        </div>
+                        <div class="rounded-circle bg-primary text-center position-relative" style="height: 3.125rem; width: 3.125rem;">
+                            <span class="position-absolute top-50 start-50 translate-middle badge fs-5 text-black">
+                                9.8
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
+                <div class="card-body" style="padding: 0.5rem !important;">
+                    <div class="d-flex justify-content-center mb-2">
+                        <img class="text-center" src="{% static 'img/solo-leveling.jpg' %}" alt="" style="width: 160px; height: 200px;" data-swiper-parallax="-300"> 
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-black">Solo Leveling</h6>
+                            <p class="card-text">00/00/0000</p>
+                        </div>
+                        <div class="rounded-circle bg-primary text-center position-relative" style="height: 50px; width: 50px;">
+                            <span class="position-absolute top-50 start-50 translate-middle badge fs-5 text-black">
+                                9.8
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
+                <div class="card-body" style="padding: 0.5rem !important;">
+                    <div class="d-flex justify-content-center mb-2">
+                        <img class="text-center" src="{% static 'img/solo-leveling.jpg' %}" alt="" style="width: 160px; height: 200px;" data-swiper-parallax="-300">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-black">Solo Leveling</h6>
+                            <p class="card-text">00/00/0000</p>
+                        </div>
+                        <div class="rounded-circle bg-primary text-center position-relative" style="height: 50px; width: 50px;">
+                            <span class="position-absolute top-50 start-50 translate-middle badge fs-5 text-black">
+                                9.8
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
             <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
                 <div class="card-body" style="padding: 0.5rem !important;">
                     <div class="d-flex justify-content-center mb-2">
@@ -45,6 +102,26 @@
                             </span>
                         </div>
                     </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
+                <div class="card-body" style="padding: 0.5rem !important;">
+                    <div class="d-flex justify-content-center mb-2">
+                        <img class="text-center" src="{% static 'img/solo-leveling.jpg' %}" alt="" style="width: 160px; height: 200px;">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-black">Solo Leveling</h6>
+                            <p class="card-text">00/00/0000</p>
+                        </div>
+                        <div class="rounded-circle bg-primary text-center position-relative" style="height: 50px; width: 50px;">
+                            <span class="position-absolute top-50 start-50 translate-middle badge fs-5 text-black">
+                                9.8
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
                 </div>
             </div>
             <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
@@ -64,80 +141,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
-                <div class="card-body" style="padding: 0.5rem !important;">
-                    <div class="d-flex justify-content-center mb-2">
-                        <img class="text-center" src="{% static 'img/solo-leveling.jpg' %}" alt="" style="width: 160px; height: 200px;">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h6 class="card-subtitle mb-2 text-black">Solo Leveling</h6>
-                            <p class="card-text">00/00/0000</p>
-                        </div>
-                        <div class="rounded-circle bg-primary text-center position-relative" style="height: 50px; width: 50px;">
-                            <span class="position-absolute top-50 start-50 translate-middle badge fs-5 text-black">
-                                9.8
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
-                <div class="card-body" style="padding: 0.5rem !important;">
-                    <div class="d-flex justify-content-center mb-2">
-                        <img class="text-center" src="{% static 'img/solo-leveling.jpg' %}" alt="" style="width: 160px; height: 200px;">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h6 class="card-subtitle mb-2 text-black">Solo Leveling</h6>
-                            <p class="card-text">00/00/0000</p>
-                        </div>
-                        <div class="rounded-circle bg-primary text-center position-relative" style="height: 50px; width: 50px;">
-                            <span class="position-absolute top-50 start-50 translate-middle badge fs-5 text-black">
-                                9.8
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
-                <div class="card-body" style="padding: 0.5rem !important;">
-                    <div class="d-flex justify-content-center mb-2">
-                        <img class="text-center" src="{% static 'img/solo-leveling.jpg' %}" alt="" style="width: 160px; height: 200px;">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h6 class="card-subtitle mb-2 text-black">Solo Leveling</h6>
-                            <p class="card-text">00/00/0000</p>
-                        </div>
-                        <div class="rounded-circle bg-primary text-center position-relative" style="height: 50px; width: 50px;">
-                            <span class="position-absolute top-50 start-50 translate-middle badge fs-5 text-black">
-                                9.8
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-md-2" style="width: 10rem; padding-inline: 0 !important; height: 295px;">
-                <div class="card-body" style="padding: 0.5rem !important;">
-                    <div class="d-flex justify-content-center mb-2">
-                        <img class="text-center" src="{% static 'img/solo-leveling.jpg' %}" alt="" style="width: 160px; height: 200px;">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h6 class="card-subtitle mb-2 text-black">Solo Leveling</h6>
-                            <p class="card-text">00/00/0000</p>
-                        </div>
-                        <div class="rounded-circle bg-primary text-center position-relative" style="height: 50px; width: 50px;">
-                            <span class="position-absolute top-50 start-50 translate-middle badge fs-5 text-black">
-                                9.8
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                <a href="#" class="stretched-link"></a>
             </div>
         </div>
+
+
+        <h2 class="text-white mb-3">Filmes</h2>
+        <h2 class="text-white mb-3">Séries</h2>
+        <h2 class="text-white mb-3">Animes</h2>
     </div>
 </div>
 
@@ -145,28 +156,39 @@
     import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
   
     const swiper = new Swiper('.swiper',{
-  // Optional parameters
-  direction: 'horizontal',
-  loop: true,
-  delay: 100,
+    // Optional parameters
+    //   direction: 'horizontal',
+    speed: 600,
+    parallax: true,
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: true,
+    },
 
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
 
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
 })
 </script>
 <style>
 .swiper {
-  max-width: 100%;
-  max-height: 600px;
-  object-fit: fill;
+    max-width: 100%;
+    max-height: 600px;
+}
+.img {
+    max-width: 100%;
+    width: 1920px;
+    max-height: 600px;
+    object-fit: cover;
+    object-position: right;
 }
 </style>
 {% endblock %}
