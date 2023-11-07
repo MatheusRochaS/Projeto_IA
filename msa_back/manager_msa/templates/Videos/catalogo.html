@@ -1,8 +1,41 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block styles %}<link rel="stylesheet" href="{% static 'css/catalogo.css'%}">{% endblock %}
+
 {% block title %}Cadastro{% endblock %}
 
 {% block content %}
-
+<div class="navigation">
+    <ul>
+        <li>
+            <a href="#">
+                <span class="title">MSA Videos</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="title">Series</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="title">Filmes</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="title">Animes</span>
+            </a>
+        </li>
+    </ul>
+    <!-- <div class="toggle"></div> -->
+</div>
+<!-- <script>
+    let navigation = document.querySelector('.navigation');
+    let toggle = document.querySelector('.toggle');
+    toggle.onclick = function(){
+        navigation.classList.toggle('active')
+    }
+</script> -->
 {% endblock %}

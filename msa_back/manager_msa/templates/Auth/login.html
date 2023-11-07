@@ -3,6 +3,8 @@
 
 {% block title %}Login{% endblock %}
 
+{% block styles %}<link rel="stylesheet" href="{% static 'css/login.css'%}">{% endblock %}
+
 {% block content %}
     <div>
         <div class="z-1 position-absolute shadow-img "></div>
@@ -10,7 +12,7 @@
     </div>
     <div class="container">
         <div class="position-relative">
-            <div class="bg-light z-2 position-absolute end-0 p-3 rounded-3 text-black row form-login">
+            <div class="bg-light z-2 position-absolute end-0 p-3 rounded-3 text-black row form">
                 <h2 class="text-center">Login</h2>
                 <form action="" method="POST">
                     {% csrf_token %}
@@ -31,31 +33,4 @@
             </div>
         </div>
     </div>
-    <style>
-        
-        .img {
-            height: 50rem;
-            max-height: 90%;
-            width: 85rem;
-            max-width: 80%;
-            object-fit: cover;
-            object-position: right;
-        }
-
-        .shadow-img{
-            height: 50rem;
-            max-height: 90%;
-            width: 85rem;
-            max-width: 80%;
-            background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(53, 53, 53, 0) 15%, #212529 100%);
-            box-shadow: inset -100px -60px 100px #212529, 100px 0px 100px #212529, inset 0px 60px 100px #212529;
-            object-fit: cover;
-            object-position: right;
-        }
-
-        .form-login{
-            margin-top: 15vh; 
-            min-height: 30rem;
-        }
-    </style>
 {% endblock %}
