@@ -17,24 +17,40 @@
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="form-group mb-3 col-md">
-                    <label for="name">Nome</label>
-                    <input type="text" class="form-control" id="name" placeholder="Nome">
+                    <label for="name">Usuário:</label>
+                    <!-- <input type="text" class="form-control" id="name" placeholder="Nome"> -->
+                    {{ form_usuario.username }}
+                    <span class="text-danger">{{form_usuario.username.errors}}</span>
                 </div>
                 <div class="form-group mb-3 col-md">
-                    <label for="lastname">Sobrenome</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="Sobrenome">
+                    <label for="name">Nome:</label>
+                    <!-- <input type="text" class="form-control" id="name" placeholder="Nome"> -->
+                    {{ form_usuario.first_name }}
+                    <span class="text-danger">{{form_usuario.first_name.errors}}</span>
                 </div>
                 <div class="form-group mb-3 col-md">
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="E-mail">
+                    <label for="lastname">Sobrenome:</label>
+                    <!-- <input type="text" class="form-control" id="lastname" placeholder="Sobrenome"> -->
+                    {{ form_usuario.last_name }}
+                    <span class="text-danger">{{form_usuario.last_name.errors}}</span>
                 </div>
                 <div class="form-group mb-3 col-md">
-                    <label for="password">Senha</label>
-                    <input type="password" class="form-control" id="password" placeholder="Senha">
+                    <label for="email">E-mail:</label>
+                    <!-- <input type="email" class="form-control" id="email" placeholder="E-mail"> -->
+                    {{ form_usuario.email }}
+                    <span class="text-danger">{{form_usuario.email.errors}}</span>
                 </div>
                 <div class="form-group mb-3 col-md">
-                    <label for="password-confirmed">Confirmar Senha</label>
-                    <input type="password" class="form-control" id="password-confirmed" placeholder="Senha de Confirmação">
+                    <label for="password">Senha:</label>
+                    <!-- <input type="password" class="form-control" id="password" placeholder="Senha"> -->
+                    {{ form_usuario.password1 }}
+                    <span class="text-danger">{{form_usuario.password1.errors}}</span>
+                </div>
+                <div class="form-group mb-3 col-md">
+                    <label for="password-confirmed">Confirmar Senha:</label>
+                    <!-- <input type="password" class="form-control" id="password-confirmed" placeholder="Senha de Confirmação"> -->
+                    {{ form_usuario.password2 }}
+                    <span class="text-danger">{{form_usuario.password2.errors}}</span>
                 </div>
                 <div class="col-md text-center d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Registrar</button>
@@ -44,4 +60,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    const inputUser = document.querySelector('#id_username');
+    inputUser.classList.add('form-control')
+
+    const inputFirstName = document.querySelector('#id_first_name');
+    inputFirstName.classList.add('form-control')
+
+    const inputLastName = document.querySelector('#id_last_name');
+    inputLastName.classList.add('form-control')
+
+    const inputEmail = document.querySelector('#id_email');
+    inputEmail.classList.add('form-control')
+
+    const inputPassword1 = document.querySelector('#id_password1');
+    inputPassword1.classList.add('form-control')
+
+    const inputPassword2 = document.querySelector('#id_password2');
+    inputPassword2.classList.add('form-control')
+</script>
 {% endblock %}

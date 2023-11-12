@@ -26,5 +26,9 @@ venv\Scripts\activate.bat
 
 Run Project
 ```sh
+py manage.py migrate 
+```
+
+```sh
 py manage.py runserver 
 ```

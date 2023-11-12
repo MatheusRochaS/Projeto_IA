@@ -19,3 +19,11 @@
     object-fit: cover;
     object-position: right;
 }
+
+.errorlist > li {
+    margin: 0 !important;
+}
+
+.errorlist {
+    margin-block-end: 0 !important;
+}
