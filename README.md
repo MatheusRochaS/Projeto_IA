@@ -24,7 +24,16 @@ Windows cmd.exe
 venv\Scripts\activate.bat
 ```
 
+Run requirement.txt
+```sh
+pip install -r requirements.txt
+```
+
 Run Project
+```sh
+cd msa_back 
+```
+
 ```sh
 py manage.py migrate 
 ```

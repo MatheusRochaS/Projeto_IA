@@ -29,20 +29,29 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
                         <!-- <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'welcome' %}">Home</a>
                         </li> -->
                         
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'main' %}">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'main' %}">
+                                <i class="fa-solid fa-house me-1"></i>
+                                Inicio
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'catalogo' %}">Catalogo Geral</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'catalogo' %}">
+                                <i class="fa-solid fa-book-open me-1"></i>
+                                Catalogo Geral
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'lista' %}">Listagem</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'lista' %}">
+                                <i class="fa-solid fa-table-list me-1"></i>
+                                Listagem
+                            </a>
                         </li> 
                         {% endif %}
                     </ul>
