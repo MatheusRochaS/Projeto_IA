@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserForm
+from .request import request as api
 
 # Create your views here.
 def welcome_view(request):
@@ -45,7 +46,8 @@ def register(request):
 
 @login_required(login_url='/login')
 def main(request):
-    return render(request, template_name='Videos/main.html', status=200)
+    resp_api = api.get(url="https://api.themoviedb.org/3/trending/all/day?language=pt-Br")
+    return render(request, template_name='Videos/main.html', status=200, context={'videos':resp_api})
 
 @login_required(login_url='/login')
 def catalogo_geral(request):
