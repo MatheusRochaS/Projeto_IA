@@ -4,5 +4,27 @@
 {% block title %}Cadastro{% endblock %}
 
 {% block content %}
-
+    <div class="container text-white mt-5">
+        
+        {% if alert.msg != '' %}
+            <div class="alert alert-{{alert.type}} mb-4" role="alert">
+                {{ alert.msg }}
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-3">
+                <img class="rounded" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{details.poster_path}}" alt="">
+            </div>
+            <div class="col">
+                <h2>{{details.title}}</h2>
+                <p>Titulo original: {{details.original_title}}</p>
+                <p>{{ details }}</p>
+            </div>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Adicionar na lista</button>
+            <a href="{% url 'lista' user.id %}" class="btn btn-primary">Ver lista de Filmes</a>
+        </form>
+    </div>
 {% endblock %}

@@ -36,6 +36,7 @@
     object-fit: cover;
 } */
 
-.swiper-pagination {
-    bottom: 1vh !important;
-}
+/* .swiper-pagination {
+    bottom: var(--swiper-pagination-bottom, 8px) !important;
+    top: var(--swiper-pagination-top,auto) !important
+} */

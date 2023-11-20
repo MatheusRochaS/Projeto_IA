@@ -4,5 +4,49 @@
 {% block title %}Listagem{% endblock %}
 
 {% block content %}
-
+<div class="container text-white mt-5">
+    <h2 class="mb-3">Lista de Filmes</h2>
+    <!-- {{list}} -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Lançamento</th>
+          <th scope="col">Gênero</th>
+          <th scope="col">Status</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="align-middle">
+        
+        {% for l in list %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{ l.title }}</td>
+            <td>{{l.release_date }}</td>
+            <td>
+              {% for g  in l.genres %}
+                <span class="badge text-bg-secondary">{{ g.name }}</span>
+              {% endfor %}
+            </td>
+            <td>
+              {% if l.status_watch %}
+                <span class="badge text-bg-success"><i class="fa-solid fa-thumbs-up fa-2x"></i></span>
+              {% else %}
+                <span class="badge text-bg-danger"><i class="fa-solid fa-thumbs-down fa-2x"></i></span>
+              {% endif %}
+            </td>
+            <td>
+              <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></button>
+                <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+</div>
 {% endblock %}

@@ -10,5 +10,5 @@ urlpatterns = [
     path("main", views.main, name="main"),
     path("catalogo", views.catalogo_geral, name="catalogo"),
     path("infos/<int:video_id>", views.infos, name="infos"),
-    path("lista", views.lista_geral, name="lista"),
+    path("lista/<int:user_id>", views.lista_geral, name="lista"),
 ]
