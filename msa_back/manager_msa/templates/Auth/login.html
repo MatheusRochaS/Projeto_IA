@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block styles %}<link rel="stylesheet" href="{% static 'css/login.css'%}">{% endblock %}
+
+{% block content %}
+    <div>
+        <div class="z-1 position-absolute shadow-img "></div>
+        <img src="{% static 'img/loki.jpg' %}" alt="" class="z-0 rounded position-absolute img">
+    </div>
+    <div class="container">
+        <div class="position-relative">
+            <div class="bg-light z-2 position-absolute end-0 p-3 rounded-3 text-black row form">
+                <h2 class="text-center">Login</h2>
+                <form action="" method="POST">   
+                    {% csrf_token %}
+                    <div class="form-group mb-3 col-md">
+                        <label for="id_username">Usuário</label>
+                        <!-- <input type="text" class="form-control" id="user"> -->
+                        {{form_login.username}}
+                        <span class="text-danger">{{form_login.username.errors}}</span>
+                    </div>
+                    <div class="form-group col-md">
+                        <label for="id_password">Senha</label>
+                        <!-- <input type="password" class="form-control" id="password"> -->
+                        {{form_login.password}}
+                        <span class="text-danger">{{form_login.password.errors}}</span>
+                    </div>
+                    <p class="text-primary mt-1">Esqueci minha senha</p>
+                    <div class="col-md text-center d-grid gap-2">
+                        <button type="submit" class="btn btn-primary mt-3">Login</button>
+                        <p>Não tem uma conta? <a class="nav-link link-primary" href="{% url 'register' %}"><b>Registre-se</b></a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputUser = document.querySelector('#id_username');
+        inputUser.classList.add('form-control')
+
+        const inputPassword = document.querySelector('#id_password');
+        inputPassword.classList.add('form-control')
+    </script>
+{% endblock %}

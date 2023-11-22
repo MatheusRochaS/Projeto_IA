@@ -7,19 +7,37 @@ Creation of Virtual Environments
 pip install virtualenv
 ```
 ```sh
-py -m venv env
+py -m venv venv
 ```
 Windows PowerShell
 ```sh
-env\Scripts\Activate.ps1
+venv\Scripts\Activate.ps1
+```
+
+Linux PowerShell
+```sh
+source venv/bin/activate
 ```
 
 Windows cmd.exe
 ```sh
-env\Scripts\activate.bat
+venv\Scripts\activate.bat
+```
+
+Run requirement.txt
+```sh
+pip install -r requirements.txt
 ```
 
 Run Project
+```sh
+cd msa_back 
+```
+
+```sh
+py manage.py migrate 
+```
+
 ```sh
 py manage.py runserver 
 ```
