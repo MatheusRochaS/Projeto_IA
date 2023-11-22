@@ -72,6 +72,8 @@ def lista_geral(request, user_id):
 @login_required(login_url='/login')
 def infos(request, video_id):
     movie_detail = api.get(url=f"https://api.themoviedb.org/3/movie/{video_id}?language=pt-BR")
+    movie_credits = api.get(url=f"https://api.themoviedb.org/3/movie/{video_id}/credits?language=pt-BR")
+    movie_images = api.get(url=f"https://api.themoviedb.org/3/movie/{video_id}/images")
     message = {
             'msg': '',
             'type': ''
@@ -85,4 +87,4 @@ def infos(request, video_id):
             'type': 'success'
         }
         
-    return render(request, template_name='Videos/infos.html', context={'details': movie_detail, 'alert': message})
+    return render(request, template_name='Videos/infos.html', context={'details': movie_detail, 'alert': message, 'credits': movie_credits, 'images': movie_images})

@@ -11,7 +11,7 @@
                 {{ alert.msg }}
             </div>
         {% endif %}
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-md-3">
                 <img class="rounded w-100" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{details.poster_path}}" alt="">
                 <div class="mt-2 d-flex gap-2 flex-wrap">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 
-                <form action="" method="POST" class="d-flex gap-2 mb-3">
+                <form method="POST" class="d-flex gap-2 mb-3">
                     {% csrf_token %}
                     <!-- <button type="submit" class="btn btn-success">
                         <i class="fa-solid fa-list"></i> Adicionar na lista
@@ -65,12 +65,21 @@
                 </form>
 
                 <span>
-                    <p class="text-white-50">{{ details.tagline }}</p>
+                    <p class="text-white-50"><em>{{ details.tagline }}</em></p>
                 </span>
                 <p>{{ details }}</p>
+
+                <div>
+                    <p style="margin: 0;">Direção:</p>
+                    {% for c in credits.crew %}
+                        {% if c.job == 'Director' %}
+                            <p>{{c.name}}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
-        <div>
+        <div class="bg-light text-black p-3 rounded">
             <h3>Sinopse</h3>
             {{ details.overview }}
         </div>
