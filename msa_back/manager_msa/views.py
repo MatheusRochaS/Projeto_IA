@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomUserForm
 from .request import request as api
 from .models import Movie
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def welcome_view(request):
@@ -59,6 +60,16 @@ def catalogo_geral(request):
 @login_required(login_url='/login')
 def lista_geral(request, user_id):
     list_movie = Movie.objects.all().filter(user=user_id)
+    page_num = request.GET.get('page', 1)
+
+    paginator = Paginator(list_movie, 10)
+
+    try:
+        page_obj = paginator.page(page_num)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
 
     lista_filmes = []
     for l in list_movie:
@@ -66,8 +77,13 @@ def lista_geral(request, user_id):
         # movie['release_date'] = movie.release_date.strftime("%d/%m/%y")
         movie['status_watch'] = l.watch
         lista_filmes.append(movie)
+
+        context = {
+            'list': lista_filmes,
+            'page_obj': page_obj
+        }
     
-    return render(request, template_name='Lista/lista.html', context={'list': lista_filmes})
+    return render(request, template_name='Lista/lista.html', context=context)
 
 @login_required(login_url='/login')
 def infos(request, video_id):
@@ -86,5 +102,12 @@ def infos(request, video_id):
             'msg': 'Filme adicionado com sucesso',
             'type': 'success'
         }
+    
+    context = {
+        'details': movie_detail,
+        'alert': message,
+        'credits': movie_credits,
+        'images': movie_images,
+    }
         
-    return render(request, template_name='Videos/infos.html', context={'details': movie_detail, 'alert': message, 'credits': movie_credits, 'images': movie_images})
+    return render(request, template_name='Videos/infos.html', context=context)

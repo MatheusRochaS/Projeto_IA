@@ -24,7 +24,7 @@
                 <div class="d-flex justify-content-between align-middle">
                     <div>
                         <h2>{{details.title}}</h2>
-                        <p class="mb-3">Titulo original: {{details.original_title}}</p>
+                        <p class="mb-3"><strong>Título original:</strong> {{details.original_title}}</p>
                     </div>
                     <div class="float-end">
                         <h1>
@@ -67,10 +67,14 @@
                 <span>
                     <p class="text-white-50"><em>{{ details.tagline }}</em></p>
                 </span>
-                <p>{{ details }}</p>
+                <div class="mb-3">
+                    <p class="m-0"><strong>Duração:</strong></p>
+                    <span>{{ details.runtime }} Minutos</span>
+                </div>
+                <!-- <p>{{ details }}</p> -->
 
                 <div>
-                    <p style="margin: 0;">Direção:</p>
+                    <p class="m-0"><strong>Direção:</strong></p>
                     {% for c in credits.crew %}
                         {% if c.job == 'Director' %}
                             <p>{{c.name}}</p>
@@ -80,7 +84,7 @@
             </div>
         </div>
         <div class="bg-light text-black p-3 rounded">
-            <h3>Sinopse</h3>
+            <h3><strong>Sinopse</strong></h3>
             {{ details.overview }}
         </div>
     </div>
