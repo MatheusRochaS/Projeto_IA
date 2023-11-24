@@ -7,6 +7,15 @@
 <div class="container text-white mt-5">
     <h2 class="mb-3">Lista de Filmes</h2>
     <!-- {{list}} -->
+    {% if messages %}
+    <ul>
+      <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </div>
+    </ul>
+    {% endif %}
     <table class="table text-center">
       <thead>
         <tr>
@@ -42,7 +51,7 @@
             <td>
               <div class="d-flex gap-2 justify-content-center">
                 <a class="btn btn-primary" href="{% url 'infos' l.id %}"><i class="fa-solid fa-circle-info"></i></a>
-                <button class="btn btn-danger" name="delete-video"><i class="fa-solid fa-trash-can"></i></button>
+                <a class="btn btn-danger" href="{% url 'delete-movie' l.id_bd %}"><i class="fa-solid fa-trash-can"></i></a>
               </div>
             </td>
           </tr>

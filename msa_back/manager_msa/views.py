@@ -6,6 +6,9 @@ from .forms import CustomUserForm
 from .request import request as api
 from .models import Movie
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib import messages
 
 # Create your views here.
 def welcome_view(request):
@@ -76,11 +79,12 @@ def lista_geral(request, user_id):
         movie = api.get(url=f"https://api.themoviedb.org/3/movie/{l.movie}?language=pt-BR")
         # movie['release_date'] = movie.release_date.strftime("%d/%m/%y")
         movie['status_watch'] = l.watch
+        movie['id_bd'] = l.id
         lista_filmes.append(movie)
 
         context = {
             'list': lista_filmes,
-            'page_obj': page_obj
+            'page_obj': page_obj,
         }
     
     return render(request, template_name='Lista/lista.html', context=context)
@@ -94,12 +98,12 @@ def infos(request, video_id):
             'msg': '',
             'type': ''
         }
+    movie = Movie(user_id= request.user.pk ,movie=video_id, watch=0)
     if request.method == "POST":
-        movie = Movie(user_id= request.user.pk ,movie=video_id, watch=0)
         movie.save()
         
         message = {
-            'msg': 'Filme adicionado com sucesso',
+            'msg': f"Filme {movie_detail['title']} adicionado com sucesso na sua lista de filmes!",
             'type': 'success'
         }
     
@@ -111,3 +115,17 @@ def infos(request, video_id):
     }
         
     return render(request, template_name='Videos/infos.html', context=context)
+
+@login_required(login_url='/login')
+def delete_movie(request, video_id):
+    movie = Movie.objects.get(id=video_id)
+    movie_detail = api.get(url=f"https://api.themoviedb.org/3/movie/{movie.movie}?language=pt-BR")
+    movie.delete()
+    # message = {
+    #     'msg': f'Filme {movie_detail[0].title} deletado com sucesso!',
+    #     'type': 'success'
+    # }
+
+    # context = {'alert': message}
+    messages.success(request, f"Filme {movie_detail['title']} deletado com sucesso!")
+    return HttpResponseRedirect(reverse('lista', kwargs={'user_id':request.user.id}))
