@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Perguntas{% endblock %}
+
+{% block styles %}<link rel="stylesheet" href="{% static 'css/login.css'%}">{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perguntas de Múltipla Escolha</title>
+    <style>
+        .retangulo-central {
+            width: 300px;
+            height: 300px;
+            background-color: #ccc;
+            margin: 0 auto;
+            margin-top: 100px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="retangulo-central">
+        <form method="post" action="{% url 'perguntas' %}">
+            {% csrf_token %}
+            {% for pergunta in perguntas %}
+                <h3>{{ pergunta.pergunta }}</h3>
+                {% for opcao in pergunta.opcoes %}
+                    <input type="radio" name="{{ pergunta.pergunta }}" value="{{ opcao }}"> {{ opcao }}<br>
+                {% endfor %}
+                <br>
+            {% endfor %}
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+</body>
+</html>
+
+    <script>
+        const inputUser = document.querySelector('#id_username');
+        inputUser.classList.add('form-control')
+
+        const inputPassword = document.querySelector('#id_password');
+        inputPassword.classList.add('form-control')
+    </script>
+{% endblock %}
