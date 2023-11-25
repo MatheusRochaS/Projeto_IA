@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block styles %}<link rel="stylesheet" href="{% static 'css/registro.css'%}">{% endblock %}
+
 {% block title %}Cadastro{% endblock %}
 
 {% block content %}
@@ -10,61 +12,72 @@
 </div>
 <div class="container">
     <div class="position-relative">
-        <div class="bg-light z-2 position-absolute end-0 p-3 rounded-3 text-black row form-register">
+        <div class="bg-light z-2 position-absolute end-0 p-3 rounded-3 text-black row form">
             <h2 class="text-center">Cadastro</h2>
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="form-group mb-3 col-md">
-                    <label for="user">Nome de Usuário</label>
-                    <input type="text" class="form-control" id="user" placeholder="Nome de Usuário">
+                    <label for="name">Usuário:</label>
+                    <!-- <input type="text" class="form-control" id="name" placeholder="Nome"> -->
+                    {{ form_usuario.username }}
+                    <span class="text-danger">{{form_usuario.username.errors}}</span>
                 </div>
                 <div class="form-group mb-3 col-md">
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="E-mail">
+                    <label for="name">Nome:</label>
+                    <!-- <input type="text" class="form-control" id="name" placeholder="Nome"> -->
+                    {{ form_usuario.first_name }}
+                    <span class="text-danger">{{form_usuario.first_name.errors}}</span>
                 </div>
                 <div class="form-group mb-3 col-md">
-                    <label for="password">Senha</label>
-                    <input type="password" class="form-control" id="password" placeholder="Senha">
+                    <label for="lastname">Sobrenome:</label>
+                    <!-- <input type="text" class="form-control" id="lastname" placeholder="Sobrenome"> -->
+                    {{ form_usuario.last_name }}
+                    <span class="text-danger">{{form_usuario.last_name.errors}}</span>
                 </div>
                 <div class="form-group mb-3 col-md">
-                    <label for="password-confirmed">Confirmar Senha</label>
-                    <input type="password" class="form-control" id="password-confirmed" placeholder="Senha de Confirmação">
+                    <label for="email">E-mail:</label>
+                    <!-- <input type="email" class="form-control" id="email" placeholder="E-mail"> -->
+                    {{ form_usuario.email }}
+                    <span class="text-danger">{{form_usuario.email.errors}}</span>
+                </div>
+                <div class="form-group mb-3 col-md">
+                    <label for="password">Senha:</label>
+                    <!-- <input type="password" class="form-control" id="password" placeholder="Senha"> -->
+                    {{ form_usuario.password1 }}
+                    <span class="text-danger">{{form_usuario.password1.errors}}</span>
+                </div>
+                <div class="form-group mb-3 col-md">
+                    <label for="password-confirmed">Confirmar Senha:</label>
+                    <!-- <input type="password" class="form-control" id="password-confirmed" placeholder="Senha de Confirmação"> -->
+                    {{ form_usuario.password2 }}
+                    <span class="text-danger">{{form_usuario.password2.errors}}</span>
                 </div>
                 <div class="col-md text-center d-grid gap-2">
-                    <button type="submit" class="btn btn-primary mt-3">Registrar</button>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
                     <a class="nav-link link-primary" href="{% url 'login' %}"><b>Voltar</b></a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<style>
-    
-    .img {
-        height: 70rem;
-        max-height: 90%;
-        width: 85rem;
-        max-width: 80%;
-        right: 34%;
-        object-fit: cover;
-        object-position: right;
-    }
 
-    .shadow-img{
-        height: 70rem;
-        max-height: 90%;
-        width: 85rem;
-        max-width: 80%;
-        right: 34%;
-        background-image: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(88,88,88,0) 51,85%, #212529 100%);
-        box-shadow: inset -150px -60px 100px #212529, 100px 0px 100px #212529, inset 0px 60px 100px #212529;
-        object-fit: cover;
-        object-position: right;
-    }
+<script>
+    const inputUser = document.querySelector('#id_username');
+    inputUser.classList.add('form-control')
 
-    .form-register{
-        margin-top: 15vh; 
-        min-height: 30rem;
-    }
-</style>
+    const inputFirstName = document.querySelector('#id_first_name');
+    inputFirstName.classList.add('form-control')
+
+    const inputLastName = document.querySelector('#id_last_name');
+    inputLastName.classList.add('form-control')
+
+    const inputEmail = document.querySelector('#id_email');
+    inputEmail.classList.add('form-control')
+
+    const inputPassword1 = document.querySelector('#id_password1');
+    inputPassword1.classList.add('form-control')
+
+    const inputPassword2 = document.querySelector('#id_password2');
+    inputPassword2.classList.add('form-control')
+</script>
 {% endblock %}

@@ -1,0 +1,19 @@
+.img {
+    height: 50rem;
+    max-height: 90%;
+    width: 85rem;
+    max-width: 80%;
+    object-fit: cover;
+    object-position: right;
+}
+
+.shadow-img{
+    height: 50rem;
+    max-height: 90%;
+    width: 85rem;
+    max-width: 80%;
+    background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(53, 53, 53, 0) 15%, #212529 100%);
+    box-shadow: inset -100px -60px 100px #212529, 100px 0px 100px #212529, inset 0px 60px 100px #212529;
+    object-fit: cover;
+    object-position: right;
+}

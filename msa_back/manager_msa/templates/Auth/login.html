@@ -3,6 +3,8 @@
 
 {% block title %}Login{% endblock %}
 
+{% block styles %}<link rel="stylesheet" href="{% static 'css/login.css'%}">{% endblock %}
+
 {% block content %}
     <div>
         <div class="z-1 position-absolute shadow-img "></div>
@@ -10,17 +12,21 @@
     </div>
     <div class="container">
         <div class="position-relative">
-            <div class="bg-light z-2 position-absolute end-0 p-3 rounded-3 text-black row form-login">
+            <div class="bg-light z-2 position-absolute end-0 p-3 rounded-3 text-black row form">
                 <h2 class="text-center">Login</h2>
-                <form action="" method="POST">
+                <form action="" method="POST">   
                     {% csrf_token %}
                     <div class="form-group mb-3 col-md">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="E-mail">
+                        <label for="id_username">Usuário</label>
+                        <!-- <input type="text" class="form-control" id="user"> -->
+                        {{form_login.username}}
+                        <span class="text-danger">{{form_login.username.errors}}</span>
                     </div>
                     <div class="form-group col-md">
-                        <label for="password">Senha</label>
-                        <input type="password" class="form-control" id="password" placeholder="Senha">
+                        <label for="id_password">Senha</label>
+                        <!-- <input type="password" class="form-control" id="password"> -->
+                        {{form_login.password}}
+                        <span class="text-danger">{{form_login.password.errors}}</span>
                     </div>
                     <p class="text-primary mt-1">Esqueci minha senha</p>
                     <div class="col-md text-center d-grid gap-2">
@@ -31,31 +37,12 @@
             </div>
         </div>
     </div>
-    <style>
-        
-        .img {
-            height: 50rem;
-            max-height: 90%;
-            width: 85rem;
-            max-width: 80%;
-            object-fit: cover;
-            object-position: right;
-        }
 
-        .shadow-img{
-            height: 50rem;
-            max-height: 90%;
-            width: 85rem;
-            max-width: 80%;
-            background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(53, 53, 53, 0) 15%, #212529 100%);
-            box-shadow: inset -100px -60px 100px #212529, 100px 0px 100px #212529, inset 0px 60px 100px #212529;
-            object-fit: cover;
-            object-position: right;
-        }
+    <script>
+        const inputUser = document.querySelector('#id_username');
+        inputUser.classList.add('form-control')
 
-        .form-login{
-            margin-top: 15vh; 
-            min-height: 30rem;
-        }
-    </style>
+        const inputPassword = document.querySelector('#id_password');
+        inputPassword.classList.add('form-control')
+    </script>
 {% endblock %}
