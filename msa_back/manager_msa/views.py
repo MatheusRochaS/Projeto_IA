@@ -130,7 +130,7 @@ def delete_movie(request, video_id):
     messages.success(request, f"Filme {movie_detail['title']} deletado com sucesso!")
     return HttpResponseRedirect(reverse('lista', kwargs={'user_id':request.user.id}))
 
-ef perguntas(request):
+def perguntas(request):
     perguntas = [
         {
             'pergunta': 'Qual é a capital da França?',
