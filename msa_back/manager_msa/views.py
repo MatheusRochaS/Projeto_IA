@@ -129,3 +129,25 @@ def delete_movie(request, video_id):
     # context = {'alert': message}
     messages.success(request, f"Filme {movie_detail['title']} deletado com sucesso!")
     return HttpResponseRedirect(reverse('lista', kwargs={'user_id':request.user.id}))
+
+ef perguntas(request):
+    perguntas = [
+        {
+            'pergunta': 'Qual é a capital da França?',
+            'opcoes': ['Paris', 'Londres', 'Madri', 'Berlim'],
+        },
+        {
+            'pergunta': 'Qual é a cor do céu?',
+            'opcoes': ['Azul', 'Vermelho', 'Verde', 'Amarelo'],
+        },
+    ]
+
+    if request.method == 'POST':
+        respostas = []
+        for pergunta in perguntas:
+            resposta = request.POST.get(pergunta['pergunta'])
+            respostas.append(resposta)
+        
+        # Faça algo com as respostas, por exemplo, salvar em um banco de dados
+
+    return render(request, 'perguntas.html', {'perguntas': perguntas})
