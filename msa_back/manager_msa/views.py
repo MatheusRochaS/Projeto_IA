@@ -133,12 +133,16 @@ def delete_movie(request, video_id):
 def perguntas(request):
     perguntas = [
         {
-            'pergunta': 'Qual é a capital da França?',
-            'opcoes': ['Paris', 'Londres', 'Madri', 'Berlim'],
+            'pergunta': ' Fala ai! Oque você curte?',
+            'opcoes': ['FILMES', 'SÉRIES', 'DORAMAS', 'DESENHOS'],
         },
         {
-            'pergunta': 'Qual é a cor do céu?',
-            'opcoes': ['Azul', 'Vermelho', 'Verde', 'Amarelo'],
+            'pergunta': 'Quais gêneros você gosta de assistir?',
+            'opcoes': ['DRAMA', 'ANIMAÇÃO', 'CRIME', 'AÇÃO', 'SCI-FI', 'COMEDY', 'DOCUMENTÁRIO', 'MISTÉRIO', 'FAMÍLIA'],
+        },
+        {
+            'pergunta': 'Quais desses você se interessa?',
+            'opcoes': ['AÇÃO', 'COMÉDIA', 'TERROR', 'FAMÍLIA', 'DRAMA'],
         },
     ]
 
@@ -147,7 +151,8 @@ def perguntas(request):
         for pergunta in perguntas:
             resposta = request.POST.get(pergunta['pergunta'])
             respostas.append(resposta)
+            # return redirect('main')
         
         # Faça algo com as respostas, por exemplo, salvar em um banco de dados
 
-    return render(request, 'perguntas.html', {'perguntas': perguntas})
+    return render(request, 'Gatilhos/gatilho.html', {'perguntas': perguntas})
