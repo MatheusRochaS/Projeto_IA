@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block styles %}<link rel="stylesheet" href="{% static 'css/main.css'%}">{% endblock %}
+
+
+{% block content %}
+    <div class="container mt-5">
+        <form action="">
+            <div class="row">
+                <div class="col-md-11">
+                    <input class="form-control mb-3" type="search" name="search" id="search" placeholder="Pesquise aqui...">
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+        </form>
+
+        
+        {% if search == 'Não encontrado' %}
+            <div class="d-inline gap-2 flex-wrap">
+                <p class="text-white-50">Sugestões de Pesquisa</p>
+                {% for key in keywords.results %}
+                    
+                    {% if key.media_type == 'movie' %}
+                        <a class="btn btn-secondary mb-1" href="/search?search={{ key.title }}">{{key.title}}</a>
+                    {% else %}
+                        <a class="btn btn-secondary mb-1" href="/search?search={{ key.name }}">{{key.name}}</a>
+                    {% endif %}
+                        
+                    
+                {% endfor %}
+                    
+            </div>
+        {% else %}
+            <h2 class="text-white">Resultados de {{search_video}}:</h2>
+        {% endif %}
+            
+        <div class="text-white d-flex grid gap-5 flex-wrap mt-3">
+            {% for video in search.results %}
+                
+                {% if video.media_type == 'tv' %}
+                <div>
+                    <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 20rem;">
+                        <div class="card-body" style="padding: 0.5rem !important;">
+                            <div class="d-flex justify-content-center mb-2">
+                                <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{video.poster_path}}" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                            </div>
+                            <div class="align-middle">
+                                <div class="mb-1">
+                                    <h6 class="card-subtitle text-black">{{video.name}}</h6>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-end mt-auto">
+                                    <span class="card-text fs-6">{{ video.first_air_date }}</span>
+                                </div>
+                            </div>
+                            <a href="{% url 'infos' video.id 'serie' %}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+
+                {% else %}
+
+                <div>
+                    <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 20rem;">
+                        <div class="card-body" style="padding: 0.5rem !important;">
+                            <div class="d-flex justify-content-center mb-2">
+                                <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{video.poster_path}}" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                            </div>
+                            <div class="align-middle">
+                                <div class="mb-1">
+                                    <h6 class="card-subtitle text-black">{{video.title}}</h6>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-end mt-auto">
+                                    <span class="card-text fs-6">{{ video.release_date }}</span>
+                                </div>
+                            </div>
+                            <a href="{% url 'infos' video.id 'movie' %}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% block scripts %}
+    
+{% endblock scripts %}
+    
+{% endblock content %}
+    
