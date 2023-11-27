@@ -33,7 +33,7 @@
             <tr>
               <th scope="row">{{ forloop.counter }}</th>
               <td>{{ l.title }}</td>
-              <td>{{ l.release_date }}</td>
+              <td>{{ l.release_date_format }}</td>
               <td>
                 {% for g  in l.genres %}
                   <span class="badge text-bg-secondary">{{ g.name }}</span>

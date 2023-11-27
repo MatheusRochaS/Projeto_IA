@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from django.db.models import Q
+from datetime import datetime
 
 # Create your views here.
 def welcome_view(request):
@@ -53,15 +54,26 @@ def register(request):
 @login_required(login_url='/login')
 def main(request):
     resp_api = api.get(url="https://api.themoviedb.org/3/trending/all/day?language=pt-Br")
+    for r in resp_api['results']:
+        if r['media_type'] == 'tv' and r['first_air_date'] != '':
+            r['first_air_date_format'] = datetime.strptime(r['first_air_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
+        elif r['media_type'] == 'movie':
+            r['release_date_format'] = datetime.strptime(r['release_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
     movies = api.get(url="https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1")
+    # movies['results'][0]['release_date_format'] = datetime.strptime(movies['results'][0]['release_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
+    for m in movies['results']:
+        m['release_date_format'] = datetime.strptime(m['release_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
     series = api.get(url="https://api.themoviedb.org/3/tv/popular?language=pt-BR&page=1")
+    for s in series['results']:
+        s['first_air_date_format'] = datetime.strptime(s['first_air_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
     movies_now = api.get(url="https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1")
 
     context = {
-        'videos':resp_api, 
+        'videos': resp_api, 
         'movies': movies, 
         'series': series,
-        'movies_now': movies_now
+        'movies_now': movies_now,
+        # 'date': movie_date_format,
     }
 
     return render(request, template_name='Videos/main.html', status=200, context=context)
@@ -88,9 +100,9 @@ def lista_geral(request, user_id):
     for l in list_movie:
         movie = api.get(url=f"https://api.themoviedb.org/3/movie/{l.movie}?language=pt-BR")
         # movie['release_date'] = movie.release_date.strftime("%d/%m/%y")
-        movie['status_watch'] = l.watch
         movie['id_bd'] = l.id
         movie['rating_personal'] = l.rating
+        movie['release_date_format'] = datetime.strptime(movie['release_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
         lista_filmes.append(movie)
 
         context = {
@@ -174,6 +186,11 @@ def search(request):
     if search_videos:
         Q(search_videos)
         videos = api.get(url=f"https://api.themoviedb.org/3/search/multi?query={search_videos}&include_adult=false&language=pt-BR&page=1")
+        for v in videos['results']:
+            if v['media_type'] == 'tv' and v['first_air_date'] != '':
+                v['first_air_date_format'] = datetime.strptime(v['first_air_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
+            elif v['media_type'] == 'movie':
+                v['release_date_format'] = datetime.strptime(v['release_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
     else:
         videos = 'Não encontrado'
     
@@ -184,6 +201,7 @@ def search(request):
     }
 
     return render(request, template_name='search.html', context=context)
+
 def perguntas(request):
     perguntas = [
         {

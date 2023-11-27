@@ -54,7 +54,7 @@
                                     <h6 class="card-subtitle text-black">{{video.name}}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-end mt-auto">
-                                    <span class="card-text fs-6">{{ video.first_air_date }}</span>
+                                    <span class="card-text fs-6">{{ video.first_air_date_format }}</span>
                                 </div>
                             </div>
                             <a href="{% url 'infos' video.id 'serie' %}" class="stretched-link"></a>
@@ -75,7 +75,7 @@
                                     <h6 class="card-subtitle text-black">{{video.title}}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-end mt-auto">
-                                    <span class="card-text fs-6">{{ video.release_date }}</span>
+                                    <span class="card-text fs-6">{{ video.release_date_format }}</span>
                                 </div>
                             </div>
                             <a href="{% url 'infos' video.id 'movie' %}" class="stretched-link"></a>
