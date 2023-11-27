@@ -5,7 +5,6 @@
 
 {% block content %}
     <div class="container text-white mt-5">
-        
         {% if alert.msg != '' %}
             <div class="alert alert-{{alert.type}} mb-4" role="alert">
                 {{ alert.msg }}
@@ -13,18 +12,23 @@
         {% endif %}
         <div class="row mb-3">
             <div class="col-md-3">
-                <img class="rounded w-100" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{details.poster_path}}" alt="">
-                <div class="mt-2 d-flex gap-2 flex-wrap">
-                    {% for d in details.genres %}
-                        <span class="badge rounded-pill text-bg-dark border">{{ d.name }}</span>
-                    {% endfor %}
-                </div>
+                <img class="rounded w-100" src="https://www.themoviedb.org/t/p/original/{{details.poster_path}}">
             </div>
             <div class="col">
                 <div class="d-flex justify-content-between align-middle">
                     <div>
-                        <h2>{{details.title}}</h2>
-                        <p class="mb-3"><strong>Título original:</strong> {{details.original_title}}</p>
+                        {% if details.type_video == 'movie' %}
+                        <h2 class="mb-1 m-0">{{details.title}}</h2>
+                        <p class="mb-3 m-0"><strong>Título original:</strong> {{details.original_title}}</p>
+                        {% else %}
+                        <h2 class="mb-1 m-0">{{details.name}}</h2>
+                        <p class="mb-3 m-0"><strong>Título original:</strong> {{details.original_name}}</p>
+                        {% endif %}
+                        <div class="mt-2 d-inline gap-2 flex-wrap">
+                            {% for d in details.genres %}
+                                <span class="badge rounded-pill text-bg-dark border mb-3">{{ d.name }}</span>
+                            {% endfor %}
+                        </div>
                     </div>
                     <div class="float-end">
                         <h1>
@@ -48,7 +52,7 @@
                     </div>
                 </div>
                 
-                <form method="POST" class="d-flex gap-2 mb-3">
+                <form method="GET" class="d-flex gap-2 mb-3">
                     {% csrf_token %}
                     <!-- <button type="submit" class="btn btn-success">
                         <i class="fa-solid fa-list"></i> Adicionar na lista
@@ -56,12 +60,56 @@
                     <button type="submit" class="btn btn-success">
                         <i class="fa-regular fa-bookmark me-1"></i> Adicionar na lista
                     </button>
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fa-regular fa-heart me-1"></i> Favoritos
-                    </button>
                     <a href="{% url 'lista' user.id %}" class="btn btn-primary">
                         <i class="fa-solid fa-list me-1"></i> Ver lista de Filmes
                     </a>
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Avaliação
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'rating-movie' details.id 0 %}">
+                                    Sem Avaliação
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'rating-movie' details.id 1 %}">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'rating-movie' details.id 2 %}">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'rating-movie' details.id 3 %}">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'rating-movie' details.id 4 %}">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'rating-movie' details.id 5 %}">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </form>
 
                 <span>
