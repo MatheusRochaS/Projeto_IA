@@ -53,7 +53,7 @@ def register(request):
 
 @login_required(login_url='/login')
 def main(request):
-    resp_api = api.get(url="https://api.themoviedb.org/3/trending/all/day?language=pt-Br")
+    resp_api = api.get(url="https://api.themoviedb.org/3/trending/all/week?language=pt-Br")
     for r in resp_api['results']:
         if r['media_type'] == 'tv' and r['first_air_date'] != '':
             r['first_air_date_format'] = datetime.strptime(r['first_air_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
@@ -101,31 +101,45 @@ def lista_geral(request, user_id):
         movie = api.get(url=f"https://api.themoviedb.org/3/movie/{l.movie}?language=pt-BR")
         # movie['release_date'] = movie.release_date.strftime("%d/%m/%y")
         movie['id_bd'] = l.id
-        movie['rating_personal'] = l.rating
+        movie['rating_personal'] = l.rating 
         movie['release_date_format'] = datetime.strptime(movie['release_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
         lista_filmes.append(movie)
 
-        context = {
-            'list': lista_filmes,
-            'page_obj': page_obj,
-        }
+    context = {
+        'list': lista_filmes,
+        'page_obj': page_obj,
+    }
     
     return render(request, template_name='Lista/lista.html', context=context)
 
 @login_required(login_url='/login')
 def infos(request, video_id, type):
+    list_movie = Movie.objects.filter(movie__contains=video_id)
 
     if type == 'movie':
         video_detail = api.get(url=f"https://api.themoviedb.org/3/movie/{video_id}?language=pt-BR")
         video_detail['type_video'] = 'movie'
+        video_detail['release_date_format'] = datetime.strptime(video_detail['release_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
         video_credits = api.get(url=f"https://api.themoviedb.org/3/movie/{video_id}/credits?language=pt-BR")
         video_images = api.get(url=f"https://api.themoviedb.org/3/movie/{video_id}/images")
+        video_release_date = api.get(url=f"https://api.themoviedb.org/3/movie/{video_id}/release_dates")
+
+        if list_movie:
+            for l in list_movie:
+                video_detail['is_list'] = 'true'
+                video_detail['rating_personal'] = l.rating
+                video_detail['id_movie'] = l.id
+        else:
+            for l in list_movie:
+                video_detail['is_list'] = 'false'
         
     else:
         video_detail = api.get(url=f"https://api.themoviedb.org/3/tv/{video_id}?language=pt-BR")
         video_detail['type_video'] = 'serie'
+        video_detail['first_air_date_format'] = datetime.strptime(video_detail['first_air_date'], "%Y-%m-%d").strftime('%d/%m/%Y')
         video_credits = api.get(url=f"https://api.themoviedb.org/3/tv/{video_id}/credits?language=pt-BR")
-        video_images = api.get(url=f"https://api.themoviedb.org/3/tv/{video_id}/images?language=pt-BR")
+        video_images = api.get(url=f"https://api.themoviedb.org/3/tv/{video_id}/images")
+        video_release_date = api.get(url=f"https://api.themoviedb.org/3/movie/{video_id}/release_dates")
 
     message = {
                 'msg': '',
@@ -145,6 +159,7 @@ def infos(request, video_id, type):
         'alert': message,
         'credits': video_credits,
         'images': video_images,
+        'release_date': video_release_date
     }
         
     return render(request, template_name='Videos/infos.html', context=context)

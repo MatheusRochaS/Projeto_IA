@@ -21,7 +21,6 @@
         
             {% for m in movies_now.results %}
 
-            
             {% if forloop.counter <= 5 %}
                 {% if forloop.counter == 1 %}
                 <div class="carousel-item active">
@@ -277,11 +276,11 @@
         },
         768: {
           slidesPerView: 4,
-          spaceBetween: 40,
+          spaceBetween: 30,
         },
         1024: {
           slidesPerView: 6,
-          spaceBetween: 50,
+          spaceBetween: 40,
         },
       },
     });
