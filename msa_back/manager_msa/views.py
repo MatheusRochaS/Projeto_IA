@@ -214,7 +214,7 @@ def perguntas(request):
         },
         {
             'pergunta': 'Quais desses você se interessa?',
-            'opcoes': ['AÇÃO', 'COMÉDIA', 'TERROR', 'FAMÍLIA', 'DRAMA'],
+            'opcoes': ['1', '2', '3'],
         },
     ]
 

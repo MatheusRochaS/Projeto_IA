@@ -13,7 +13,7 @@
     <style>
         .retangulo-central {
             width: 80%;
-            height: 600px;
+            height: 100%%;
             background-color: #ccc;
             margin: 0 auto;
             margin-top: 70px;
@@ -38,37 +38,53 @@
                 <br>
             {% endfor %}
 
-            <div class="swiper-slide">
-                <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 20rem;">
-                    <div class="card-body" style="padding: 0.5rem !important;">
-                        <div class="d-flex justify-content-center mb-2">
-                            <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{video.poster_path}}" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                    <div class="text-white d-flex grid gap-4 flex-wrap mt-2 justify-content-center">
+                        <div>
+                            <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 17rem;">
+                                <div class="card-body" style="padding: 0.5rem !important;">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/dMOpdkrDC5dQxqNydgKxXjBKyAc.jpg" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                                    </div>
+                                    <div class="align-middle">
+                                        <div class="mb-1">
+                                            <h6 class="card-subtitle text-black">Invincible</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="align-middle">
-                            <div class="mb-1">
-                                <h6 class="card-subtitle text-black">{{video.name}}</h6>
+                        <div>
+                            <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 17rem;">
+                                <div class="card-body" style="padding: 0.5rem !important;">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                                    </div>
+                                    <div class="align-middle">
+                                        <div class="mb-1">
+                                            <h6 class="card-subtitle text-black">Game of Thrones</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 17rem;">
+                                <div class="card-body" style="padding: 0.5rem !important;">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/5weKu49pzJCt06OPpjvT80efnQj.jpg" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                                    </div>
+                                    <div class="align-middle">
+                                        <div class="mb-1">
+                                            <h6 class="card-subtitle text-black">Spider-Man: No Way Home</h6>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 20rem;">
-                    <div class="card-body" style="padding: 0.5rem !important;">
-                        <div class="d-flex justify-content-center mb-2">
-                            <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{video.poster_path}}" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
-                        </div>
-                        <div class="align-middle">
-                            <div class="mb-1">
-                                <h6 class="card-subtitle text-black">{{video.name}}</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-auto">
-                <input type="submit" class="btn btn-primary"  value="Enviar">
+            <div class="col-auto float-end mt-5">
+                <button type="submit" class="btn btn-primary rounded-circle"><i class="fa-solid fa-arrow-right fa-3x"></i></button>
             </div>
         </form>
     </div>
