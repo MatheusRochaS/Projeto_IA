@@ -9,30 +9,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Perguntas de Múltipla Escolha</title>
+    <title>Questionário</title>
     <style>
         .retangulo-central {
-            width: 300px;
-            height: 300px;
+            width: 80%;
+            height: 100%%;
             background-color: #ccc;
             margin: 0 auto;
-            margin-top: 100px;
+            margin-top: 70px;
             padding: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="retangulo-central">
+    <div class="retangulo-central rounded-4">
         <form method="post" action="{% url 'perguntas' %}">
             {% csrf_token %}
             {% for pergunta in perguntas %}
-                <h3>{{ pergunta.pergunta }}</h3>
-                {% for opcao in pergunta.opcoes %}
-                    <input type="radio" name="{{ pergunta.pergunta }}" value="{{ opcao }}"> {{ opcao }}<br>
+                <div class="text-center">
+                    <h3>{{ pergunta.pergunta }}</h3> 
+                    {% for opcao in pergunta.opcoes %}
+                        {% comment %} <input type="radio" name="{{ pergunta.pergunta }}" value="{{ opcao }}"> {{ opcao }}<br> {% endcomment %}
+                        <p class="d-inline-flex gap-1">
+                            <a href="#" class="btn" role="button" data-bs-toggle="button">{{ opcao }}</a>
+                            {% comment %} <a href="#" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">Active toggle link</a> {% endcomment %}
+                        </p>
                 {% endfor %}
                 <br>
             {% endfor %}
-            <input type="submit" value="Enviar">
+
+                    <div class="text-white d-flex grid gap-4 flex-wrap mt-2 justify-content-center">
+                        <div>
+                            <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 17rem;">
+                                <div class="card-body" style="padding: 0.5rem !important;">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/dMOpdkrDC5dQxqNydgKxXjBKyAc.jpg" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                                    </div>
+                                    <div class="align-middle">
+                                        <div class="mb-1">
+                                            <h6 class="card-subtitle text-black">Invincible</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 17rem;">
+                                <div class="card-body" style="padding: 0.5rem !important;">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                                    </div>
+                                    <div class="align-middle">
+                                        <div class="mb-1">
+                                            <h6 class="card-subtitle text-black">Game of Thrones</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card col-md-2" style="width: 11rem; padding-inline: 0 !important; height: 17rem;">
+                                <div class="card-body" style="padding: 0.5rem !important;">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <img class="text-center" src="https://www.themoviedb.org/t/p/w220_and_h330_face/5weKu49pzJCt06OPpjvT80efnQj.jpg" alt="" style="width: 11rem; height: 13rem;" data-swiper-parallax="-300">
+                                    </div>
+                                    <div class="align-middle">
+                                        <div class="mb-1">
+                                            <h6 class="card-subtitle text-black">Spider-Man: No Way Home</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            <div class="col-auto float-end mt-5">
+                <button type="submit" class="btn btn-primary rounded-circle"><i class="fa-solid fa-arrow-right fa-3x"></i></button>
+            </div>
         </form>
     </div>
 </body>

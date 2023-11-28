@@ -8,57 +8,84 @@
     <h2 class="mb-3">Lista de Filmes</h2>
     <!-- {{list}} -->
     {% if messages %}
-    <ul>
       <div class="alert alert-success" role="alert">
         {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
         {% endfor %}
       </div>
-    </ul>
     {% endif %}
-    <table class="table text-center">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Título</th>
-          <th scope="col">Lançamento</th>
-          <th scope="col">Gênero</th>
-          <th scope="col">Favorito</th>
-          <th scope="col">Status</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody class="align-middle">
-        
-        {% for l in list %}
+    <div class="table-responsive">
+      <table class="table text-center">
+        <thead>
           <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td>{{ l.title }}</td>
-            <td>{{ l.release_date }}</td>
-            <td>
-              {% for g  in l.genres %}
-                <span class="badge text-bg-secondary">{{ g.name }}</span>
-              {% endfor %}
-            </td>
-            <td><button class="btn"><i class="fa-regular fa-heart text-secondary"></i></button></td>
-            <td>
-              {% if l.status_watch %}
-                <button class="btn btn-success" name="status-positive"><i class="fa-solid fa-thumbs-up"></i></button>
-              {% else %}
-                <button class="btn btn-danger" name="status-negative"><i class="fa-solid fa-thumbs-down"></i></button>
-              {% endif %}
-            </td>
-            <td>
-              <div class="d-flex gap-2 justify-content-center">
-                <a class="btn btn-primary" href="{% url 'infos' l.id %}"><i class="fa-solid fa-circle-info"></i></a>
-                <a class="btn btn-danger" href="{% url 'delete-movie' l.id_bd %}"><i class="fa-solid fa-trash-can"></i></a>
-              </div>
-            </td>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Lançamento</th>
+            <th scope="col">Gênero</th>
+            <th scope="col">Avaliação</th>
+            <!-- <th scope="col">Status</th> -->
+            <th scope="col">Ações</th>
           </tr>
-        {% endfor %}
-        
-      </tbody>
-    </table>
+        </thead>
+        <tbody class="align-middle">
+      
+          {% for l in list %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ l.title }}</td>
+              <td>{{ l.release_date_format }}</td>
+              <td>
+                {% for g  in l.genres %}
+                  <span class="badge text-bg-secondary">{{ g.name }}</span>
+                {% endfor %}
+              </td>
+              <td>
+                <!-- <button class="btn"><i class="fa-regular fa-heart text-secondary"></i></button> -->
+      
+                {% if l.rating_personal == 0 %}
+                <span style="margin: 0;">Sem Avaliação</span>
+                {% elif l.rating_personal == 1 %}
+                <i class="fa-solid fa-star text-warning"></i>
+                {% elif l.rating_personal == 2 %}
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                {% elif l.rating_personal == 3 %}
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                {% elif l.rating_personal == 4 %}
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                {% elif l.rating_personal == 5 %}
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                {% endif %}
+      
+              </td>
+              <!-- <td>
+                {% if l.status_watch %}
+                  <button class="btn btn-success" name="status-positive"><i class="fa-solid fa-thumbs-up"></i></button>
+                {% else %}
+                  <button class="btn btn-danger" name="status-negative"><i class="fa-solid fa-thumbs-down"></i></button>
+                {% endif %}
+              </td> -->
+              <td>
+                <div class="d-flex gap-2 justify-content-center">
+                  <a class="btn btn-primary" href="{% url 'infos' l.id 'movie' %}"><i class="fa-solid fa-circle-info"></i></a>
+                  <a class="btn btn-danger" href="{% url 'delete-movie' l.id_bd %}"><i class="fa-solid fa-trash-can"></i></a>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+      
+        </tbody>
+      </table>
+    </div>
 
     <!-- Paginação -->
     <div class="d-flex justify-content-between">
