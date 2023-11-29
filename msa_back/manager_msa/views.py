@@ -145,14 +145,24 @@ def infos(request, video_id, type):
                 'msg': '',
                 'type': ''
             }
-    movie = Movie(user_id=request.user.pk ,movie=video_id, watch=0)
+    movie = Movie(user_id=request.user.pk ,movie=video_id, watch=0, rating=0)
     if request.method == "POST":
-        movie.save()
-        
-        message = {
-            'msg': f"Filme {video_detail['title']} adicionado com sucesso na sua lista de filmes!",
-            'type': 'success'
-        }
+        if list_movie:
+            message = {
+                'msg': f"Filme {video_detail['title']} já está na sua lista de filmes!",
+                'type': 'warning'
+            }
+        else:
+            movie.save()
+            
+            # message = {
+            #     'msg': f"Filme {video_detail['title']} adicionado com sucesso na sua lista de filmes!",
+            #     'type': 'success'
+            # }
+
+            messages.success(request, f"Filme {video_detail['title']} adicionado com sucesso na sua lista de filmes!")
+
+            return HttpResponseRedirect(reverse('lista', kwargs={'user_id':request.user.id}))
     
     context = {
         'details': video_detail,
